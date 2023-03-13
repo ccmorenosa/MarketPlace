@@ -1,15 +1,9 @@
-function App() {
-  return (
-      <div className="h-screen w-screen bg-emerald-300">
-        <h1 className="text-3xl font-bold underline text-blue">
-          Hello world!
-        </h1>
+import Workspace from "./components/workspace";
 
-        <h2 className="text-xl text-green-t5">
-          test
-        </h2>
-      </div>
-  );
+function App() {
+    return (
+        <Workspace />
+    );
 }
 
 export default App;
