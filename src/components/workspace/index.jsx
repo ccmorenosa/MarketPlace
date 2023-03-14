@@ -4,8 +4,8 @@
  * It renders the workspace pages where the user works.
  */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Layout from "../layouts";
+import Products from './Products';
 
 
 /**
@@ -28,7 +28,7 @@ function Workspace(props) {
 
             <Layout.Scroll>
 
-
+                <Products />
 
             </Layout.Scroll>
 
