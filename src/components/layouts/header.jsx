@@ -31,7 +31,7 @@ function Header(props) {
 
     // Class for the user dropdown button.
     let menuItemClass = (
-        "block px-4 py-2 hover:bg-blue-t-3 dark:hover:bg-blue-s7"
+        "block px-4 py-2 hover:bg-blue-t3 dark:hover:bg-blue-s7"
     );
 
     return (
