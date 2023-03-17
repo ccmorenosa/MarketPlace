@@ -3,6 +3,7 @@
  *
  * It renders a component with product tables and creation form.
  */
+// @ts-check
 import React, { useState, useEffect } from 'react';
 import DB from '../../databases';
 import $ from 'jquery';

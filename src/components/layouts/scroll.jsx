@@ -3,6 +3,8 @@
  *
  * It renders a div with scroll for overflow.
  */
+// @ts-check
+import React from "react";
 
 
 /**

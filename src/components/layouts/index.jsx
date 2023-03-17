@@ -1,4 +1,5 @@
 /** Group layout components. */
+// @ts-check
 
 import Header from "./header";
 import Scroll from "./scroll";

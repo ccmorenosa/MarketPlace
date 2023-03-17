@@ -3,6 +3,7 @@
  *
  * It renders the workspace pages where the user works.
  */
+// @ts-check
 import React, { useState, useEffect } from 'react';
 import Layout from "../layouts";
 import Products from './Products';

@@ -3,6 +3,8 @@
  *
  * It renders the header of page.
  */
+// @ts-check
+import React from "react";
 import DarkModeButton from "../common/buttons";
 
 
