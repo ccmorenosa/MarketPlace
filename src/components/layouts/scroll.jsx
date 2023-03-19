@@ -23,7 +23,7 @@ function Scroll(props) {
     );
 
     return (
-        <div className={scroll}>
+        <div className={scroll + props.className}>
 
             {props.children}
 
