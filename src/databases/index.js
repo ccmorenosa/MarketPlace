@@ -32,14 +32,33 @@ class DbAdmin {
      * an exception.
      */
     fetchAllProducts(
-        responseFunction = ()=>{},
-        exceptionFunction = (e)=> console.log(e.stack)
+        responseFunction = () => {},
+        exceptionFunction = (e) => console.log(e)
     ) {
 
         // Make the GET request.
         axios.get( this.routes.products )
             .then( responseFunction )
             .catch( exceptionFunction );
+
+    }
+
+    /**
+     * Get all the product in the database.
+     *
+     * @param {function} responseFunction - Function after the request return
+     * its value.
+     * @param {function} exceptionFunction - Function in case the request throw
+     * an exception.
+     */
+    async fetchAllProductsAsync() {
+
+        try {
+            // Make the GET request.
+            return await axios.get( this.routes.products );
+        } catch (e) {
+            if (e.code != "ECONNABORTED") console.log(e);
+        }
 
     }
 
@@ -54,8 +73,8 @@ class DbAdmin {
      */
     createProduct(
         productItem,
-        responseFunction = ()=>{},
-        exceptionFunction = (e)=> console.log(e.stack)
+        responseFunction = () => {},
+        exceptionFunction = (e) => console.log(e)
     ) {
 
         // Make the POST request.
