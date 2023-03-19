@@ -15,20 +15,32 @@ import DarkModeButton from "../common/buttons";
 function Header(props) {
 
     // Class for the main div.
-    let headerClass = (
-        "h-12 flex font-semibold bg-blue-t1 dark:bg-blue-s8"
+    let navClass = (
+        "h-12 font-semibold bg-blue-t1 dark:bg-blue-s8 w-screen py-2.5 px-2"
+    );
+
+    // Class for the container div.
+    let containClass = (
+        "container flex flex-wrap items-center justify-between"
+    );
+
+    // Class for the menu dropdown button in sm displays.
+    let smButtonMenu = (
+        "p-2 mr-3 items-center inline-flex md:hidden rounded-lg " +
+        "hover:bg-blue-t3 dark:hover:bg-blue-s7 focus:outline-none " +
+        "focus:ring-2 focus:ring-blue-t4 dark:focus:ring-blue-s4"
     );
 
     // Class for the user dropdown button.
     let userButtonClass = (
-        "py-1 px-3 rounded-lg focus:ring-4 focus:outline-none " +
+        "mx-2 py-1 px-3 rounded-lg focus:ring-4 focus:outline-none " +
         "bg-blue-t1 dark:bg-blue-s8 hover:bg-blue-t3 hover:dark:bg-blue-s7 "
     );
 
     // Class for the user dropdown button.
-    let userMenuClass = (
-        "w-40 shadow z-10 hidden rounded-lg divide-y divide-gray " +
-        "bg-blue-t1 dark:bg-blue-s8"
+    let dropdownClass = (
+        "shadow z-10 hidden rounded-lg divide-y " +
+        "divide-gray-s5 dark:divide-gray-t5 bg-blue-t1 dark:bg-blue-s8"
     );
 
     // Class for the user dropdown button.
@@ -37,82 +49,127 @@ function Header(props) {
     );
 
     return (
-        <div className={headerClass}>
+        <nav className={navClass}>
 
-            <div className="text-xl my-auto px-2">
-                MarketPlace
-            </div>
+            <div className={containClass}>
 
-            <div className="px-5 grid grid-rows-1 grid-flow-col gap-2">
+                <div>
 
-                <button
-                    className="py-1 px-4 hover:bg-blue-t3 dark:hover:bg-blue-s7 rounded-lg"
-                    type="button"
-                >
-                    Products
-                </button>
-                <button
-                    className="py-1 px-4 hover:bg-blue-t3 dark:hover:bg-blue-s7 rounded-lg"
-                    type="button"
-                >
-                    Stores
-                </button>
-                <button
-                    className="py-1 px-4 hover:bg-blue-t3 dark:hover:bg-blue-s7 rounded-lg"
-                    type="button"
-                >
-                    Tags
-                </button>
+                    <button
+                        data-collapse-toggle="navbar-default"
+                        type="button"
+                        className={smButtonMenu}
+                        aria-controls="navbar-dropdown"
+                        data-dropdown-placement="bottom"
+                        aria-expanded="false"
+                    >
+                        <span className="sr-only">Open main menu</span>
+                        <i className="fa-solid fa-bars"></i>
+                    </button>
 
-            </div>
+                    <a className="text-xl my-auto px-2" href="#">
+                        MarketPlace
+                    </a>
 
-            <div className="my-auto px-2 ml-auto">
-
-                <button
-                    id="user-button"
-                    data-dropdown-toggle="user-menu"
-                    data-dropdown-trigger="hover"
-                    className={userButtonClass}
-                    type="button"
-                >
-                    User
-                </button>
-
-                <div id="user-menu" className={userMenuClass}>
-                    <ul className="py-2 text-sm" aria-labelledby="user-button">
-                        <li>
-                            <a href="#" className={menuItemClass}>
-                                Profile
-                                <i className="mx-2 fa-solid fa-user" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className={menuItemClass}>
-                                Settings
-                                <i className="mx-2 fa-solid fa-gear" />
-                            </a>
-                        </li>
-                    </ul>
-                    <ul className="py-2 text-sm" aria-labelledby="user-button">
-                        <li>
-                            <a href="#" className={menuItemClass}>
-                                Sign out
-                                <i className="mx-2 fa-solid fa-arrow-right-from-bracket" />
-                            </a>
-                        </li>
-                    </ul>
                 </div>
 
-
-            </div>
-
-            <div className="my-auto px-2">
-                <div className="grid grid-col-1">
+                <div className="md:order-last">
                     <DarkModeButton />
+
+                    <button
+                        id="user-button"
+                        data-dropdown-toggle="user-menu"
+                        data-dropdown-trigger="hover"
+                        data-dropdown-placement="bottom"
+                        className={userButtonClass}
+                        type="button"
+                    >
+                        User
+                    </button>
+
+                    <div
+                        id="user-menu"
+                        className={dropdownClass}
+                    >
+                        <ul
+                            className="py-2 text-sm"
+                            aria-labelledby="user-button"
+                        >
+                            <li>
+                                <a href="#" className={menuItemClass}>
+                                    Profile
+                                    <i className="mx-2 fa-solid fa-user" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className={menuItemClass}>
+                                    Settings
+                                    <i className="mx-2 fa-solid fa-gear" />
+                                </a>
+                            </li>
+                        </ul>
+                        <ul
+                            className="py-2 text-sm"
+                            aria-labelledby="user-button"
+                        >
+                            <li>
+                                <a href="#" className={menuItemClass}>
+                                    Sign out
+                                    <i className="mx-2 fa-solid fa-arrow-right-from-bracket" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
+
+                <div
+                    id="navbar-dropdown"
+                    className={
+                        "md:block md:w-auto mt-4 md:mt-0 " + dropdownClass
+                    }
+                >
+
+                    <ul
+                        className={
+                            "flex flex-col py-2 md:flex-row md:space-x-4 md:py-0 "
+                        }
+                    >
+                        <li>
+                            <button
+                                className="py-1 px-4 hover:bg-blue-t3 dark:hover:bg-blue-s7 rounded-lg"
+                                type="button"
+                            >
+                                Products
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className="py-1 px-4 hover:bg-blue-t3 dark:hover:bg-blue-s7 rounded-lg"
+                                type="button"
+                            >
+                                Stores
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className="py-1 px-4 hover:bg-blue-t3 dark:hover:bg-blue-s7 rounded-lg"
+                                type="button"
+                            >
+                                Tags
+                            </button>
+                        </li>
+                    </ul>
+
+
+
+
+
+                </div>
+
             </div>
 
-        </div>
+        </nav>
     );
 
 }
