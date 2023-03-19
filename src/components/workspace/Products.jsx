@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import DB from '../../databases';
 import $ from 'jquery';
+import Layout from '../layouts';
 
 
 /**
@@ -198,6 +199,135 @@ function NewProductForm(props) {
 }
 
 
+function ProductsTable (props) {
+
+    // Class for the input tags.
+    let inputTag = (
+        "block mb-2 text-sm font-medium text-gray-s6 dark:text-gray-t6"
+    );
+
+    // Class for inputs.
+    let inputClass = (
+        "border text-sm rounded-lg block w-full p-2.5 " +
+        "bg-gray-t9 border-gray-t5 dark:bg-gray-s6 dark:border-gray-s8 " +
+        "focus:ring-blue-s2 dark:focus:ring-blue-t2 " +
+        "focus:border-blue-s2 dark:focus:border-blue-t2 " +
+        "dark:placeholder-gray-t5 "
+    );
+
+    // Class for button to search products.
+    let searchClass = (
+        "ml-5 p-3 items-center rounded-lg text-sm font-medium " +
+        "text-gray-s7 bg-yellow-t1 dark:bg-yellow-s1 " +
+        "hover:bg-yellow-s1 dark:hover:bg-yellow-s2 "
+    );
+
+    /**
+     * Get all the products stored in the database.
+     * @returns List of data for the products.
+     */
+    async function fetchProducts() {
+
+        let res = await DB.fetchAllProductsAsync();
+
+        if (res) {
+
+            return res.data.map((prod, i) => {
+                return {
+                    id: prod.productId,
+                    cols: 2,
+                    head: [prod.name, prod.life],
+                    body: "test"
+                };
+            });
+
+        } else {
+            return [];
+        }
+
+    }
+
+    return (
+        <div className="p-5 md:col-span-3 lg:col-span-7 ">
+            <form name="" className="mb-6">
+
+                <div className="flex">
+                    <h1 className="text-2xl font-bold mb-6">Products</h1>
+                    <div className="ml-auto hidden md:block ">
+                        <button className="bg-pink p-3  rounded-lg">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+                <div className="flex space-x-5">
+
+                    <div>
+                        <label
+                            htmlFor="search-name"
+                            className={inputTag}
+                        >
+                            Product name
+                        </label>
+                        <input
+                            type="text"
+                            className={inputClass}
+                            name="search-name"
+                        />
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="search-min-life"
+                            className={inputTag}
+                        >
+                            Min life time
+                        </label>
+                        <input
+                            type="number"
+                            min={0}
+                            max={365}
+                            className={inputClass}
+                            name="search-min-life"
+                        />
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="search-max-life"
+                            className={inputTag}
+                        >
+                        Max life time
+                        </label>
+                        <input
+                            type="number"
+                            min={0}
+                            max={365}
+                            className={inputClass}
+                            name="search-max-life"
+                        />
+                    </div>
+
+                    <div className='mt-auto'>
+                        <button type="submit" className={searchClass}>
+                            <i className="fa-solid fa-search"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+
+            <Layout.Accordion
+                cols={2}
+                heads={["Name", "Life Time"]}
+                fetchData={fetchProducts}
+            />
+        </div>
+    );
+
+}
+
 /**
  * Products Component.
  * @param {object} props - Properties of the component.
@@ -206,12 +336,13 @@ function Products(props) {
 
     // Class for the Products component.
     let products = (
-        "grid sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-10 "
+        "grid sm:grid-cols-1 md:grid-cols-5 lg:grid-cols-10 w-screen "
     );
 
     return (
-        <div className={products} >
+        <div className={products + ""} >
             <NewProductForm />
+            <ProductsTable />
         </div>
     );
 
