@@ -56,7 +56,7 @@ function Header(props) {
                 <div>
 
                     <button
-                        data-collapse-toggle="navbar-default"
+                        data-collapse-toggle="navbar-dropdown"
                         type="button"
                         className={smButtonMenu}
                         aria-controls="navbar-dropdown"
