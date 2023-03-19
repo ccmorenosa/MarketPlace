@@ -61,6 +61,13 @@ function NewProductForm(props) {
         "flex items-center px-5 rounded hover:bg-gray-t5 dark:hover:bg-gray-s6"
     );
 
+    // Class for button to add a new store.
+    let plusButtonClass = (
+        "ml-5 px-5 items-center rounded-lg text-sm font-medium " +
+        "text-gray-s7 dark:text-gray-t7 bg-green-t1 dark:bg-green-s4 " +
+        "hover:bg-green-t3 dark:hover:bg-green-s5 "
+    );
+
     // Class for store checkbox.
     let storeInput = (
         "w-4 h-4 rounded text-pink-s1 " +
@@ -69,13 +76,20 @@ function NewProductForm(props) {
         "dark:ring-offset-gray-s7 dark:focus:ring-offset-gray-s7 "
     );
 
+    // Class for the submit button.
+    let submitButtonClass = (
+        "p-3 w-full items-center text-sm font-medium rounded-lg " +
+        "text-gray-s7 dark:text-gray-t7 bg-green-t1 dark:bg-green-s4 " +
+        "hover:bg-green-t3 dark:hover:bg-green-s5 "
+    );
+
     return (
 
         <form
             name="new-product"
             onSubmit={validateForm}
             className={
-                "p-10 md:col-span-2 lg:col-span-3 sm:text-center md:text-left"
+                "p-10 md:col-span-2 lg:col-span-3 text-center md:text-left"
             }
         >
 
@@ -139,7 +153,7 @@ function NewProductForm(props) {
 
                     <button
                         type="button"
-                        className="ml-5 items-center px-5 text-sm font-medium text-gray-s7 rounded-lg bg-green-t1 hover:bg-green-t3 dark:bg-green-s4 dark:hover:bg-green-s5 dark:text-gray-t7"
+                        className={plusButtonClass}
                     >
                         <i className="fa-solid fa-plus"></i>
                     </button>
@@ -172,7 +186,7 @@ function NewProductForm(props) {
 
 
             <button
-                className="p-3 w-full items-center text-sm font-medium text-gray-s7 rounded-lg bg-green-t1 hover:bg-green-t3 dark:bg-green-s4 dark:hover:bg-green-s5 dark:text-gray-t7"
+                className={submitButtonClass}
             >
                 Add product
             </button>
